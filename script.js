@@ -22,21 +22,26 @@ sprite_sheet.src = "img/sprite_sheet.png"
 
 const DIE = new Audio();
 DIE.src = "audio/die.wav";
+DIE.volume= 0.1;
 
 const FLAP = new Audio();
 FLAP.src = "audio/flap.wav";
+FLAP.volume= 0.1;
+
 
 const HIT = new Audio();
 HIT.src = "audio/hit.wav";
+HIT.volume= 0.1;
+
 
 const POINT = new Audio();
 POINT.src = "audio/point.wav";
+POINT.volume= 0.1;
 
 const SWOOSH = new Audio();
 SWOOSH.src = "audio/swooshing.wav";
+SWOOSH.volume= 0.1;
 
-const music = new Audio();
-music.src = "audio/music.mp3"
 
 
 
@@ -151,8 +156,8 @@ cvs.addEventListener("click", function(event)
                 state.current = state.home;
                 if(!mute)
                 {
-                    SWOOSH.currentTime = 0;
-                    SWOOSH.play();
+                    SWOOSH.currentTime = 10000;
+                    SWOOSH.pause();
                 }
             }
             break;
@@ -397,6 +402,9 @@ cvs.addEventListener("mousemove", function(event)
                 {
                     // If player is clicking and goes to Start button
                     gameButtons.start_button.isPressed = true;
+        
+               
+                    
                 }
                 else
                 {
@@ -459,6 +467,7 @@ cvs.addEventListener("mousemove", function(event)
 
 // BACKGROUND
 const background = 
+
 {
     day_spriteX   : 0,
     night_spriteX : 1211,
@@ -502,7 +511,9 @@ const background =
                          );
         }
     }
+    
 }
+
 
 // FOREGROUND
 const foreground = 
@@ -1702,21 +1713,3 @@ function loop()
 
 loop();
 
-// Получаем элементы кнопок
-const playBtn = document.getElementById('playBtn');
-const pauseBtn = document.getElementById('pauseBtn');
-
-// Создаем новый объект Audio
-const backgroundMusic = new Audio('music.mp3'); // Замените на путь к вашей музыкальной композиции
-
-// Устанавливаем параметры
-backgroundMusic.loop = true; // Зацикливаем музыку
-
-// Добавляем обработчики событий для кнопок
-playBtn.addEventListener('click', () => {
-    backgroundMusic.play();
-});
-
-pauseBtn.addEventListener('click', () => {
-    backgroundMusic.pause();
-});
