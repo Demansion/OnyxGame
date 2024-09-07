@@ -156,8 +156,8 @@ cvs.addEventListener("click", function(event)
                 state.current = state.home;
                 if(!mute)
                 {
-                    SWOOSH.currentTime = 10000;
-                    SWOOSH.pause();
+                    SWOOSH.currentTime = 0;
+                    SWOOSH.play();
                 }
             }
             break;
@@ -166,7 +166,7 @@ cvs.addEventListener("click", function(event)
 });
 
 // Control when the player presses a key
-document.addEventListener("keydown", function(event) 
+document.addEventListener("touchstart", function(event) 
 { 
     if (event.key === " ") 
     {
@@ -402,9 +402,6 @@ cvs.addEventListener("mousemove", function(event)
                 {
                     // If player is clicking and goes to Start button
                     gameButtons.start_button.isPressed = true;
-        
-               
-                    
                 }
                 else
                 {
@@ -467,7 +464,6 @@ cvs.addEventListener("mousemove", function(event)
 
 // BACKGROUND
 const background = 
-
 {
     day_spriteX   : 0,
     night_spriteX : 1211,
@@ -511,9 +507,7 @@ const background =
                          );
         }
     }
-    
 }
-
 
 // FOREGROUND
 const foreground = 
