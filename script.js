@@ -35,7 +35,13 @@ POINT.src = "audio/point.wav";
 const SWOOSH = new Audio();
 SWOOSH.src = "audio/swooshing.wav";
 
+const music = new Audio();
+music.src = "audio/music.mp3"
+
+
+
 // GAME STATES
+
 const state = 
 {
     current  : 0,
@@ -81,12 +87,7 @@ cvs.addEventListener("click", function(event)
             // Start button
             else if(clickX >= gameButtons.start_button.x && clickX <= gameButtons.start_button.x + gameButtons.start_button.w &&
                 clickY >= gameButtons.start_button.y && clickY <= gameButtons.start_button.y + gameButtons.start_button.h)
-            {
-                var audio = new Audio(); // ������ ����� ������� Audio
-                audio.src = 'music.mp3'; // ��������� ���� � ����� "�����"
-                audio.autoplay = true; // ������������� ���������
-                audio.volume = 0.2;
-            }
+          
             {
                 state.current = state.getReady;
                 if(!mute)
@@ -94,7 +95,8 @@ cvs.addEventListener("click", function(event)
                     SWOOSH.currentTime = 0;
                     SWOOSH.play();
                 }
-            }         
+            }
+        
             break;
         case state.getReady:
             bird.flap();
@@ -154,6 +156,7 @@ cvs.addEventListener("click", function(event)
                 }
             }
             break;
+            
     }        
 });
 
@@ -1698,3 +1701,22 @@ function loop()
 }
 
 loop();
+
+// Получаем элементы кнопок
+const playBtn = document.getElementById('playBtn');
+const pauseBtn = document.getElementById('pauseBtn');
+
+// Создаем новый объект Audio
+const backgroundMusic = new Audio('music.mp3'); // Замените на путь к вашей музыкальной композиции
+
+// Устанавливаем параметры
+backgroundMusic.loop = true; // Зацикливаем музыку
+
+// Добавляем обработчики событий для кнопок
+playBtn.addEventListener('click', () => {
+    backgroundMusic.play();
+});
+
+pauseBtn.addEventListener('click', () => {
+    backgroundMusic.pause();
+});
