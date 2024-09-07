@@ -40,7 +40,7 @@ POINT.volume= 0.1;
 
 const SWOOSH = new Audio();
 SWOOSH.src = "audio/swooshing.wav";
-SWOOSH.volume= 0.1;
+SWOOSH.volume = 0.1;
 
 
 
@@ -73,11 +73,15 @@ cvs.addEventListener("click", function(event)
             {
                 mute = !mute;
                 if(!mute)
-                {
-                    SWOOSH.currentTime = 0;
-                    SWOOSH.play();
+            
+                {var audio = new Audio('music.mp3');
+                    audio.play();
+                    audio.volume = 0.1;
+                    audio.currentTime = 10;
+                
                 }
             }
+  
             // Night or Day button
             else if (clickX >= gameButtons.night_button.x && clickX <= gameButtons.night_button.x + gameButtons.w &&
                      clickY >= gameButtons.y && clickY <= gameButtons.y + gameButtons.h) 
@@ -259,7 +263,9 @@ cvs.addEventListener("mousedown", function(event)
             {
                 // If player is clicking on Start button
                 gameButtons.start_button.isPressed = true;
+                
             } 
+            
             break;
         case state.game:
             mouseDown = true;
@@ -399,9 +405,12 @@ cvs.addEventListener("mousemove", function(event)
                 // Start button
                 if(clickX >= gameButtons.start_button.x && clickX <= gameButtons.start_button.x + gameButtons.start_button.w &&
                    clickY >= gameButtons.start_button.y && clickY <= gameButtons.start_button.y + gameButtons.start_button.h)
+               
                 {
                     // If player is clicking and goes to Start button
                     gameButtons.start_button.isPressed = true;
+                   
+               
                 }
                 else
                 {
@@ -484,6 +493,7 @@ const background =
         y: 0,
         h : 0
     },
+    
 
     draw : function() 
     {
@@ -507,6 +517,7 @@ const background =
                          );
         }
     }
+    
 }
 
 // FOREGROUND
@@ -996,6 +1007,7 @@ const gameButtons =
         w: 0, h: 0,
         y_pressed : 0,
         isPressed : false
+       
     },
 
     pause_button : 
@@ -1479,6 +1491,7 @@ const medal =
 
 // CANVAS SCALE
 function canvasScale() 
+
 {
     // CANVAS HEIGHT & WIDTH
     cvs.height = window.innerHeight - 2;
@@ -1499,6 +1512,8 @@ function canvasScale()
     foreground.w = cvs.width * 0.7;
     foreground.h = foreground.w * 0.46;
     foreground.dx = cvs.width * 0.007;
+
+
 
     // BIRD
     bird.x = cvs.width * 0.290;
